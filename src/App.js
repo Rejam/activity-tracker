@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AddNewActivity from "./components/AddNewActivity";
+import AddActivity from "./components/AddActivity";
 import ActivityList from "./components/ActivityList";
-import SetWeekTargets from "./components/SetWeekTargets";
+import SetTargets from "./components/SetTargets";
 import ViewProgress from "./components/ViewProgress";
 import UpdateProgress from "./components/UpdateProgress";
 
@@ -18,14 +18,19 @@ class App extends Component {
     this.setState({ activities, targets, logs });
   }
 
-  addNewActivity = newActivity => {
+  addActivity = newActivity => {
     const { activities } = this.state;
     this.setState({ activities: [...activities, newActivity] });
   };
 
-  addNewLog = newLog => {
+  addLog = newLog => {
     const { logs } = this.state;
     this.setState({ logs: [...logs, newLog] });
+  };
+
+  setTargets = newTargets => {
+    // set new targets and reset old progress
+    this.setState({ targets: newTargets, logs: [] });
   };
 
   progress = () => {
@@ -45,10 +50,14 @@ class App extends Component {
     return (
       <div className="app">
         <h1>Activity Monitor</h1>
-        <AddNewActivity addNewActivity={this.addNewActivity} />
-        <UpdateProgress targets={targets} addNewLog={this.addNewLog} />
+        <AddActivity addActivity={this.addActivity} />
+        <UpdateProgress targets={targets} addLog={this.addLog} />
         <ViewProgress targets={targets} progress={progress} />
-        <SetWeekTargets activities={activities} targets={targets} />
+        <SetTargets
+          activities={activities}
+          currentTargets={targets}
+          setTargets={this.setTargets}
+        />
         <ActivityList activities={activities} />
       </div>
     );

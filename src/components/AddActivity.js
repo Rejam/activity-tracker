@@ -1,9 +1,9 @@
 import React from "react";
 
-const AddNewActivity = ({ addNewActivity }) => {
+const AddNewActivity = ({ addActivity }) => {
   const handleSubmit = e => {
     e.preventDefault();
-    addNewActivity(e.target.elements.activity.value);
+    addActivity(e.target.elements.activity.value);
     e.target.reset();
   };
 

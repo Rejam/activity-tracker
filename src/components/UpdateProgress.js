@@ -1,12 +1,12 @@
 import React from "react";
 
-export default ({ targets, addNewLog }) => {
+export default ({ targets, addLog }) => {
   const submit = e => {
     e.preventDefault();
     const { value: activity } = e.target.elements.activity;
     const { value } = e.target.elements.amount;
     const newLog = { activity, amount: parseInt(value) };
-    addNewLog(newLog);
+    addLog(newLog);
   };
   return (
     <div>
