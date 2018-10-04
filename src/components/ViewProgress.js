@@ -1,12 +1,12 @@
 import React from "react";
 
-export default ({ activities, targets }) => {
+export default ({ progress, targets }) => {
   return (
     <div>
       <h2>View Progress</h2>
-      {targets.map(({ activity, target, current }) => (
+      {targets.map(({ activity, target }) => (
         <p>
-          {activity}: {current}/{target}
+          {activity}: {progress[activity] || 0}/{target}
         </p>
       ))}
     </div>
