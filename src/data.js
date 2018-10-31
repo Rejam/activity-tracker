@@ -3,8 +3,8 @@
 const data = {
   activities: ["press ups", "sit ups", "jogging"],
   targets: [
-    { activity: "press ups", target: 200 },
-    { activity: "sit ups", target: 100 }
+    { activity: "press ups", amount: 200 },
+    { activity: "sit ups", amount: 100 }
   ],
   logs: [
     { date: "2018-10-02", activity: "press ups", amount: 50 },

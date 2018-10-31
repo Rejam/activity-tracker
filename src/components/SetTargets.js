@@ -7,11 +7,14 @@ export default class SetTargets extends Component {
 
   formRef = React.createRef();
 
+  // Sort out targets
+  // setting a target which already exists should overwrite existing target
   submit = e => {
     e.preventDefault();
     const { targets } = this.state;
     const { setTargets } = this.props;
     setTargets(targets);
+    this.setState({ targets: [] });
   };
 
   addTarget = e => {
@@ -23,7 +26,11 @@ export default class SetTargets extends Component {
       activity,
       amount: parseInt(amount)
     };
-    this.setState(({ targets }) => ({ targets: [...targets, newTarget] }));
+    this.setState(({ targets }) => ({
+      ...targets,
+      [activity]: parseInt(amount)
+    }));
+    console.log(this.state);
     form.reset();
   };
 
@@ -39,32 +46,38 @@ export default class SetTargets extends Component {
     return (
       <div>
         <h2>Set Targets</h2>
-        <button onClick={this.useCurrentTargets}>
-          Stick with current targets
-        </button>
-        <form ref={this.formRef} onSubmit={this.submit}>
-          <div>
-            <select name="activity">
-              {activities.map(activity => (
-                <option value={activity}>{activity}</option>
+        {activities.length ? (
+          <React.Fragment>
+            <button onClick={this.useCurrentTargets}>
+              Stick with current targets
+            </button>
+            <form ref={this.formRef} onSubmit={this.submit}>
+              <div>
+                <select name="activity">
+                  {activities.map(activity => (
+                    <option value={activity}>{activity}</option>
+                  ))}
+                </select>
+                <input
+                  onEnter={this.addTarget}
+                  name="amount"
+                  type="number"
+                  placeholder="Enter amount"
+                  min="0"
+                />
+                <button onClick={this.addTarget}>Add target</button>
+              </div>
+              {targets.map(t => (
+                <div>
+                  {t.activity}: {t.amount}
+                </div>
               ))}
-            </select>
-            <input
-              onEnter={this.addTarget}
-              name="amount"
-              type="number"
-              placeholder="Enter amount"
-              min="0"
-            />
-            <button onClick={this.addTarget}>Add target</button>
-          </div>
-          {targets.map(t => (
-            <div>
-              {t.activity}: {t.amount}
-            </div>
-          ))}
-          <button type="submit">Set Targets</button>
-        </form>
+              <button type="submit">Set Targets</button>
+            </form>
+          </React.Fragment>
+        ) : (
+          <p>Please add some activities</p>
+        )}
       </div>
     );
   }

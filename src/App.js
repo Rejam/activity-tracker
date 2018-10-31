@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AddActivity from "./components/AddActivity";
 import ActivityList from "./components/ActivityList";
 import SetTargets from "./components/SetTargets";
-import ViewProgress from "./components/ViewProgress";
+import Tracker from "./components/Tracker";
 import UpdateProgress from "./components/UpdateProgress";
 
 class App extends Component {
@@ -18,9 +18,18 @@ class App extends Component {
     this.setState({ activities, targets, logs });
   }
 
+  resetLogs = () => this.setState({ logs: [] });
+
   addActivity = newActivity => {
     const { activities } = this.state;
     this.setState({ activities: [...activities, newActivity] });
+  };
+
+  deleteActivity = activity => {
+    console.log(activity);
+    this.setState(({ activities }) => ({
+      activities: activities.filter(a => a !== activity)
+    }));
   };
 
   addLog = newLog => {
@@ -50,15 +59,19 @@ class App extends Component {
     return (
       <div className="app">
         <h1>Activity Monitor</h1>
-        <AddActivity addActivity={this.addActivity} />
+        <Tracker targets={targets} progress={progress} />
         <UpdateProgress targets={targets} addLog={this.addLog} />
-        <ViewProgress targets={targets} progress={progress} />
+        <AddActivity addActivity={this.addActivity} />
         <SetTargets
           activities={activities}
           currentTargets={targets}
           setTargets={this.setTargets}
         />
-        <ActivityList activities={activities} />
+        <ActivityList
+          activities={activities}
+          deleteActivity={this.deleteActivity}
+        />
+        <button onClick={this.resetLogs}>Reset</button>
       </div>
     );
   }
