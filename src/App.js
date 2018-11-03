@@ -87,7 +87,17 @@ class App extends Component {
                   />
                 )}
               />
-              <Route path="/activities" component={Activities} />
+              <Route
+                path="/activities"
+                render={props => (
+                  <Activities
+                    {...props}
+                    activities={activities}
+                    addActivity={this.addActivity}
+                    deleteActivity={this.deleteActivity}
+                  />
+                )}
+              />
               <Route path="/report" component={Report} />
               <Route path="/activity" component={Activity} />
               <Route path="/log" component={LogActivity} />
@@ -98,20 +108,5 @@ class App extends Component {
     )
   }
 }
-
-/*
-<UpdateProgress targets={targets} addLog={this.addLog} />
-<AddActivity addActivity={this.addActivity} />
-<SetTargets
-  activities={activities}
-  currentTargets={targets}
-  setTargets={this.setTargets}
-/>
-<ActivityList
-  activities={activities}
-  deleteActivity={this.deleteActivity}
-/>
-<button onClick={this.resetLogs}>Reset</button>
-*/
 
 export default App
