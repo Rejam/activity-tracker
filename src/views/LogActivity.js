@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from 'react-bulma-components/full'
+import { Form } from 'react-bulma-components/full'
 
 export default ({ addLog, activity }) => {
   const submitLog = e => {
@@ -28,38 +30,49 @@ export default ({ addLog, activity }) => {
   return (
     <div>
       <h1>Log Activity</h1>
-      <form onSubmit={submitLog}>
-        <div>
-          <label htmlFor="activity">Activity</label>
-          <input type="text" name="activity" value={activity} disabled />
-        </div>
-        <div>
-          <label htmlFor="amount">Amount</label>
-          <input type="number" name="amount" id="amount" required />
-        </div>
-        <div>
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            name="date"
-            id="date"
-            defaultValue={`${year}-${month}-${date}`}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="time">Time</label>
-          <input
-            type="time"
-            name="time"
-            id="time"
-            defaultValue={`${hours}:${mins}`}
-          />
-        </div>
-        <button type="submit">Add Log</button>
+      <form
+        onSubmit={submitLog}
+        style={{ maxWidth: '400px', padding: '2em', margin: 'auto' }}
+      >
+        <Form.Field>
+          <Form.Label htmlFor="activity">Activity</Form.Label>
+          <Form.Control>
+            <Form.Input type="text" name="activity" value={activity} disabled />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field>
+          <Form.Label htmlFor="amount">Amount</Form.Label>
+          <Form.Control>
+            <Form.Input type="number" name="amount" id="amount" required />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field>
+          <Form.Label htmlFor="date">Date</Form.Label>
+          <Form.Control>
+            <Form.Input
+              type="date"
+              name="date"
+              id="date"
+              defaultValue={`${year}-${month}-${date}`}
+              required
+            />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field>
+          <Form.Label htmlFor="time">Time</Form.Label>
+          <Form.Control>
+            <Form.Input
+              type="time"
+              name="time"
+              id="time"
+              defaultValue={`${hours}:${mins}`}
+            />
+          </Form.Control>
+        </Form.Field>
+        <Button color="primary" type="submit">
+          Add Log
+        </Button>
       </form>
     </div>
   )
 }
-
-//{ date: "2018-10-02", activity: "press ups", amount: 50 }

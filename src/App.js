@@ -11,6 +11,7 @@ import LogActivity from './views/LogActivity'
 
 // import components
 import Nav from './components/Nav'
+import { Container } from 'react-bulma-components/full'
 
 class App extends Component {
   state = {
@@ -65,60 +66,62 @@ class App extends Component {
       <BrowserRouter>
         <div className="app">
           <Nav />
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={props => (
-                <Home {...props} progress={progress} targets={targets} />
-              )}
-            />
-            <Route
-              path="/targets"
-              render={props => (
-                <Targets
-                  {...props}
-                  activities={activities}
-                  currentTargets={targets}
-                  setTargets={this.setTargets}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/activities"
-              render={props => (
-                <Activities
-                  {...props}
-                  activities={activities}
-                  addActivity={this.addActivity}
-                  deleteActivity={this.deleteActivity}
-                />
-              )}
-            />
-            <Route path="/report" component={Report} />
-            <Route
-              path="/activities/:activity"
-              render={props => {
-                const { activity } = props.match.params
-                const log = logs.filter(a => a.activity === activity)
-                return <Activity {...props} activity={activity} log={log} />
-              }}
-            />
-            <Route
-              path="/log/:activity"
-              render={props => {
-                const { activity } = props.match.params
-                return (
-                  <LogActivity
+          <Container>
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={props => (
+                  <Home {...props} progress={progress} targets={targets} />
+                )}
+              />
+              <Route
+                path="/targets"
+                render={props => (
+                  <Targets
                     {...props}
-                    addLog={this.addLog}
-                    activity={activity}
+                    activities={activities}
+                    currentTargets={targets}
+                    setTargets={this.setTargets}
                   />
-                )
-              }}
-            />
-          </Switch>
+                )}
+              />
+              <Route
+                exact
+                path="/activities"
+                render={props => (
+                  <Activities
+                    {...props}
+                    activities={activities}
+                    addActivity={this.addActivity}
+                    deleteActivity={this.deleteActivity}
+                  />
+                )}
+              />
+              <Route path="/report" component={Report} />
+              <Route
+                path="/activities/:activity"
+                render={props => {
+                  const { activity } = props.match.params
+                  const log = logs.filter(a => a.activity === activity)
+                  return <Activity {...props} activity={activity} log={log} />
+                }}
+              />
+              <Route
+                path="/log/:activity"
+                render={props => {
+                  const { activity } = props.match.params
+                  return (
+                    <LogActivity
+                      {...props}
+                      addLog={this.addLog}
+                      activity={activity}
+                    />
+                  )
+                }}
+              />
+            </Switch>
+          </Container>
         </div>
       </BrowserRouter>
     )
