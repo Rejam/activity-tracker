@@ -105,7 +105,19 @@ class App extends Component {
                 return <Activity {...props} activity={activity} log={log} />
               }}
             />
-            <Route path="/log" component={LogActivity} />
+            <Route
+              path="/log/:activity"
+              render={props => {
+                const { activity } = props.match.params
+                return (
+                  <LogActivity
+                    {...props}
+                    addLog={this.addLog}
+                    activity={activity}
+                  />
+                )
+              }}
+            />
           </Switch>
         </div>
       </BrowserRouter>
