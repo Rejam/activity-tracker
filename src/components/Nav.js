@@ -1,10 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Heading } from 'react-bulma-components/full'
 
 const style = {
   nav: {
-    display: 'flex'
+    display: 'flex',
+    borderTop: '1px solid #333',
+    borderBottom: '1px solid #333'
   },
   link: {
     padding: '0.5em 1em',
@@ -25,13 +26,10 @@ const Link = ({ to, children }) => {
   )
 }
 export default () => (
-  <header>
-    <Heading>Activity Tracker</Heading>
-    <nav style={style.nav}>
-      <Link to="/">Home</Link>
-      <Link to="/targets">Targets</Link>
-      <Link to="/activities">Activities</Link>
-      <Link to="/report">Report</Link>
-    </nav>
-  </header>
+  <nav style={style.nav}>
+    <Link to="/">Home</Link>
+    <Link to="/targets">Targets</Link>
+    <Link to="/activities">Activities</Link>
+    <Link to="/report">Report</Link>
+  </nav>
 )

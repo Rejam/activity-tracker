@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Box } from 'react-bulma-components'
 
 export default ({ targets, progress }) => (
   <div>
     {targets.map(({ activity, amount }) => (
-      <div key={activity}>
+      <Box key={activity}>
         <p>
           {activity}: {progress[activity] || 0}/{amount}
         </p>
         <Link to={`/activities/${activity}`}>View</Link>
-      </div>
+      </Box>
     ))}
   </div>
 )

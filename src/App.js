@@ -10,7 +10,7 @@ import Activity from './views/Activity'
 import LogActivity from './views/LogActivity'
 
 // import components
-import Nav from './components/Nav'
+import Header from './components/Header'
 import { Container } from 'react-bulma-components/full'
 
 class App extends Component {
@@ -63,10 +63,10 @@ class App extends Component {
     const { targets, activities, logs } = this.state
     const progress = this.progress()
     return (
-      <BrowserRouter>
-        <div className="app">
-          <Nav />
-          <Container>
+      <Container style={{ padding: '1em' }}>
+        <BrowserRouter>
+          <div className="app">
+            <Header />
             <Switch>
               <Route
                 path="/"
@@ -121,9 +121,9 @@ class App extends Component {
                 }}
               />
             </Switch>
-          </Container>
-        </div>
-      </BrowserRouter>
+          </div>
+        </BrowserRouter>
+      </Container>
     )
   }
 }
