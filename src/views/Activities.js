@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddNewActivity = ({ activities, addActivity, deleteActivity }) => {
+const AddNewActivity = ({ activities, addActivity, delActivity }) => {
   const handleSubmit = e => {
     e.preventDefault()
     addActivity(e.target.elements.activity.value)
@@ -8,7 +8,7 @@ const AddNewActivity = ({ activities, addActivity, deleteActivity }) => {
   }
 
   const del = activity => {
-    deleteActivity(activity)
+    delActivity(activity)
   }
 
   return (

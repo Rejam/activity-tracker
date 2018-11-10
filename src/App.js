@@ -31,7 +31,7 @@ class App extends Component {
     this.setState({ activities: [...activities, newActivity] })
   }
 
-  deleteActivity = activity => {
+  delActivity = activity => {
     console.log(activity)
     this.setState(({ activities }) => ({
       activities: activities.filter(a => a !== activity)
@@ -39,14 +39,23 @@ class App extends Component {
   }
 
   addLog = newLog => {
-    const { logs } = this.state
-    this.setState({ logs: [...logs, newLog] })
+    this.setState(({ logs }) => ({ logs: [...logs, newLog] }))
   }
 
-  setTargets = newTargets => {
-    // set new targets and reset old progress
-    this.setState({ targets: newTargets, logs: [] })
+  addTarget = newTarget => {
+    this.setState({
+      targets: [...this.filterTargets(newTarget.activity), newTarget]
+    })
   }
+
+  delTarget = ({ activity }) => {
+    this.setState({
+      targets: this.filterTargets(activity)
+    })
+  }
+
+  filterTargets = activity =>
+    this.state.targets.filter(target => target.activity !== activity)
 
   progress = () => {
     const { logs } = this.state
@@ -81,8 +90,9 @@ class App extends Component {
                   <Targets
                     {...props}
                     activities={activities}
-                    currentTargets={targets}
-                    setTargets={this.setTargets}
+                    targets={targets}
+                    addTarget={this.addTarget}
+                    delTarget={this.delTarget}
                   />
                 )}
               />
@@ -94,7 +104,7 @@ class App extends Component {
                     {...props}
                     activities={activities}
                     addActivity={this.addActivity}
-                    deleteActivity={this.deleteActivity}
+                    delActivity={this.delActivity}
                   />
                 )}
               />
