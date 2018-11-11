@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { Table, TableHead, TableBody, TableButton } from '../components/Table'
+import ViewHeading from '../components/ViewHeading'
+
 export default props => {
   const { activities, addTarget, delTarget, targets } = props
 
   const submit = e => {
     e.preventDefault()
     const form = e.target
-    console.log(form.activities.value)
     const newTarget = {
       activity: form.activities.value,
       amount: parseInt(form.amount.value)
@@ -18,7 +20,7 @@ export default props => {
 
   return (
     <React.Fragment>
-      <h1 className="heading is-size-4">Set Weekly Targets</h1>
+      <ViewHeading>Set Weekly Targets</ViewHeading>
       {activities.length ? (
         <React.Fragment>
           <form onSubmit={submit}>
@@ -53,33 +55,24 @@ export default props => {
             </div>
           </form>
 
-          <div className="box">
-            <table className="table is-fullwidth is-striped is-hoverable">
-              <thead>
-                <tr>
-                  <th>Activity</th>
-                  <th>Target</th>
-                  <th />
+          <Table>
+            <TableHead>
+              <th>Activity</th>
+              <th>Target</th>
+              <th />
+            </TableHead>
+            <TableBody>
+              {targets.map((t, i) => (
+                <tr key={i}>
+                  <td>{t.activity}</td>
+                  <td>{t.amount}</td>
+                  <TableButton color="danger" onClick={() => delTarget(t)}>
+                    X
+                  </TableButton>
                 </tr>
-              </thead>
-              <tbody>
-                {targets.map((t, i) => (
-                  <tr key={i}>
-                    <td>{t.activity}</td>
-                    <td>{t.amount}</td>
-                    <td className="is-pulled-right">
-                      <button
-                        className="button is-danger is-outlined"
-                        onClick={() => delTarget(t)}
-                      >
-                        X
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </TableBody>
+          </Table>
         </React.Fragment>
       ) : (
         <div>

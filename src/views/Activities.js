@@ -1,6 +1,9 @@
 import React from 'react'
 
-const AddNewActivity = ({ activities, addActivity, delActivity }) => {
+import { Table, TableHead, TableBody, TableButton } from '../components/Table'
+import ViewHeading from '../components/ViewHeading'
+
+const AddActivity = ({ activities, addActivity, delActivity }) => {
   const handleSubmit = e => {
     e.preventDefault()
     addActivity(e.target.elements.activity.value)
@@ -13,7 +16,7 @@ const AddNewActivity = ({ activities, addActivity, delActivity }) => {
 
   return (
     <div>
-      <h2 className="heading is-size-4">Add New Activity</h2>
+      <ViewHeading>Add New Activity</ViewHeading>
       <form onSubmit={handleSubmit}>
         <div className="field is-grouped">
           <div className="control is-expanded">
@@ -33,33 +36,24 @@ const AddNewActivity = ({ activities, addActivity, delActivity }) => {
           </div>
         </div>
       </form>
-      <div className="box">
-        <table className="table is-fullwidth is-striped is-hoverable">
-          <thead>
-            <tr>
-              <th>Activity</th>
-              <th />
+      <Table>
+        <TableHead>
+          <th>Activity</th>
+          <th />
+        </TableHead>
+        <TableBody>
+          {activities.map(a => (
+            <tr key={a}>
+              <td>{a}</td>
+              <TableButton color="danger" onClick={() => del(a)}>
+                X
+              </TableButton>
             </tr>
-          </thead>
-          <tbody>
-            {activities.map(a => (
-              <tr key={a}>
-                <td>{a}</td>
-                <td className="is-pulled-right">
-                  <button
-                    className="button is-danger is-outlined"
-                    onClick={() => del(a)}
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   )
 }
 
-export default AddNewActivity
+export default AddActivity

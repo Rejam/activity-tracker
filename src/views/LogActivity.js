@@ -1,34 +1,31 @@
 import React from 'react'
 
+import ViewHeading from '../components/ViewHeading'
+
 export default ({ addLog, activity, history }) => {
   const submitLog = e => {
     e.preventDefault()
-    const amount = e.target.elements.amount.value
-    const date = e.target.elements.date.value
-    const time = e.target.elements.time.value
-
+    const { amount, date, time } = e.target.elements
     addLog({
-      dateTime: `${date} ${time}`,
+      dateTime: `${date.value} ${time.value}`,
       activity: activity,
-      amount: parseInt(amount)
+      amount: parseInt(amount.value)
     })
     history.goBack()
   }
-
   function pad(num) {
     return `${num < 10 ? '0' : ''}${num}`
   }
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = pad(now.getMonth() + 1)
-  const date = pad(now.getDate())
-
-  const hours = pad(now.getHours())
-  const mins = pad(now.getMinutes())
+  const now = new Date(),
+    year = now.getFullYear(),
+    month = pad(now.getMonth() + 1),
+    date = pad(now.getDate()),
+    hours = pad(now.getHours()),
+    mins = pad(now.getMinutes())
 
   return (
     <div>
-      <h1 className="heading is-size-4">Log Activity</h1>
+      <ViewHeading>Log Activity</ViewHeading>
       <form
         onSubmit={submitLog}
         style={{ maxWidth: '400px', padding: '2em', margin: 'auto' }}
