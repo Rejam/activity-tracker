@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default props => {
   const { activities, addTarget, delTarget, targets } = props
@@ -20,57 +21,73 @@ export default props => {
       <h1 className="heading is-size-4">Set Weekly Targets</h1>
       {activities.length ? (
         <React.Fragment>
-          <form onSubmit={submit} className="is-flex">
-            <div className="control">
-              <div className="select">
-                <select
-                  style={{ display: 'span' }}
-                  name="activities"
-                  defaultValue=""
-                  required
-                >
-                  <option disabled value="">
-                    Select activity
-                  </option>
-                  {activities.map(activity => (
-                    <option key={activity} value={activity}>
-                      {activity}
+          <form onSubmit={submit}>
+            <div className="field is-grouped">
+              <div className="control">
+                <div className="select">
+                  <select name="activities" defaultValue="" required>
+                    <option disabled value="">
+                      Select activity
                     </option>
-                  ))}
-                </select>
+                    {activities.map(activity => (
+                      <option key={activity} value={activity}>
+                        {activity}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
-            <div className="control">
-              <input
-                className="input"
-                style={{ display: 'span' }}
-                name="amount"
-                type="number"
-                placeholder="Amount"
-                min="0"
-                required
-              />
-            </div>
-            <button className="button is-primary" type="submit">
-              Add target
-            </button>
-          </form>
-          {targets.map((t, i) => (
-            <div
-              className="box is-flex"
-              style={{ justifyContent: 'space-between' }}
-              key={i}
-            >
-              <p>{t.activity}</p>
-              <p>{t.amount}</p>
-              <button className="button is-danger" onClick={() => delTarget(t)}>
-                X
+              <div className="control is-expanded">
+                <input
+                  className="input"
+                  name="amount"
+                  type="number"
+                  placeholder="Target"
+                  min="1"
+                  required
+                />
+              </div>
+              <button className="button is-primary" type="submit">
+                Add
               </button>
             </div>
-          ))}
+          </form>
+
+          <div className="box">
+            <table className="table is-fullwidth is-striped is-hoverable">
+              <thead>
+                <tr>
+                  <th>Activity</th>
+                  <th>Target</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {targets.map((t, i) => (
+                  <tr key={i}>
+                    <td>{t.activity}</td>
+                    <td>{t.amount}</td>
+                    <td className="is-pulled-right">
+                      <button
+                        className="button is-danger is-outlined"
+                        onClick={() => delTarget(t)}
+                      >
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </React.Fragment>
       ) : (
-        <p>Please add some activities</p>
+        <div>
+          <p>Please add some activities</p>
+          <Link className="button is-primary" to="/activities">
+            Add activities
+          </Link>
+        </div>
       )}
     </React.Fragment>
   )

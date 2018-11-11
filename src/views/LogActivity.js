@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ addLog, activity }) => {
+export default ({ addLog, activity, history }) => {
   const submitLog = e => {
     e.preventDefault()
     const amount = e.target.elements.amount.value
@@ -12,6 +12,7 @@ export default ({ addLog, activity }) => {
       activity: activity,
       amount: parseInt(amount)
     })
+    history.goBack()
   }
 
   function pad(num) {
@@ -27,7 +28,7 @@ export default ({ addLog, activity }) => {
 
   return (
     <div>
-      <h1>Log Activity</h1>
+      <h1 className="heading is-size-4">Log Activity</h1>
       <form
         onSubmit={submitLog}
         style={{ maxWidth: '400px', padding: '2em', margin: 'auto' }}
@@ -56,6 +57,7 @@ export default ({ addLog, activity }) => {
               type="number"
               name="amount"
               id="amount"
+              min="1"
               required
             />
           </div>
@@ -86,6 +88,7 @@ export default ({ addLog, activity }) => {
               name="time"
               id="time"
               defaultValue={`${hours}:${mins}`}
+              required
             />
           </div>
         </div>

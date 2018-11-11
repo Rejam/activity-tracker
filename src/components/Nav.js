@@ -5,7 +5,8 @@ const style = {
   nav: {
     display: 'flex',
     borderTop: '1px solid #333',
-    borderBottom: '1px solid #333'
+    borderBottom: '1px solid #333',
+    justifyContent: 'space-between'
   },
   link: {
     padding: '0.5em 1em',

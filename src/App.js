@@ -72,7 +72,7 @@ class App extends Component {
     const { targets, activities, logs } = this.state
     const progress = this.progress()
     return (
-      <div className="container" style={{ padding: '1em' }}>
+      <div className="container" style={{ padding: '1em', maxWidth: '600px' }}>
         <BrowserRouter>
           <div className="app">
             <Header />

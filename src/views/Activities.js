@@ -33,20 +33,31 @@ const AddNewActivity = ({ activities, addActivity, delActivity }) => {
           </div>
         </div>
       </form>
-      <ul>
-        {activities.map(a => (
-          <li
-            className="box is-flex"
-            style={{ justifyContent: 'space-between' }}
-            key={a}
-          >
-            <p>{a}</p>{' '}
-            <button className="button is-danger" onClick={() => del(a)}>
-              X
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="box">
+        <table className="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {activities.map(a => (
+              <tr key={a}>
+                <td>{a}</td>
+                <td className="is-pulled-right">
+                  <button
+                    className="button is-danger is-outlined"
+                    onClick={() => del(a)}
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
