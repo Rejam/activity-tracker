@@ -2,10 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default ({ activity, log }) => {
-  console.log(log)
   return (
     <div>
-      <h1>{activity}</h1>
+      <h1 className="heading is-size-4">{activity}</h1>
       <Link to={`/log/${activity}`}>Add</Link>
       <h2>**Chart**</h2>
       <ul>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import 'bulma'
 
 // import Views
 import Home from './views/Home'
@@ -11,7 +12,6 @@ import LogActivity from './views/LogActivity'
 
 // import components
 import Header from './components/Header'
-import { Container } from 'react-bulma-components/full'
 
 class App extends Component {
   state = {
@@ -28,7 +28,7 @@ class App extends Component {
 
   addActivity = newActivity => {
     const { activities } = this.state
-    this.setState({ activities: [...activities, newActivity] })
+    this.setState({ activities: [newActivity, ...activities] })
   }
 
   delActivity = activity => {
@@ -72,7 +72,7 @@ class App extends Component {
     const { targets, activities, logs } = this.state
     const progress = this.progress()
     return (
-      <Container style={{ padding: '1em' }}>
+      <div className="container" style={{ padding: '1em' }}>
         <BrowserRouter>
           <div className="app">
             <Header />
@@ -133,7 +133,7 @@ class App extends Component {
             </Switch>
           </div>
         </BrowserRouter>
-      </Container>
+      </div>
     )
   }
 }

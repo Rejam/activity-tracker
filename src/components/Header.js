@@ -1,10 +1,9 @@
 import React from 'react'
-import { Heading } from 'react-bulma-components/full'
 import Nav from './Nav'
 
 export default () => (
-  <header style={{ marginBottom: '2em' }}>
-    <Heading>Activity Tracker</Heading>
+  <header style={{ marginBottom: '1em' }}>
+    <h1 className="heading is-size-3">Activity Tracker</h1>
     <Nav />
   </header>
 )

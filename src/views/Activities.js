@@ -13,16 +13,37 @@ const AddNewActivity = ({ activities, addActivity, delActivity }) => {
 
   return (
     <div>
-      <h2>Add New Activity</h2>
+      <h2 className="heading is-size-4">Add New Activity</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="activity">New activity</label>
-        <input id="activity" name="activity" type="text" required />
-        <button type="submit">Add</button>
+        <div className="field is-grouped">
+          <div className="control is-expanded">
+            <input
+              className="input"
+              id="activity"
+              name="activity"
+              type="text"
+              placeholder="Enter new activity"
+              required
+            />
+          </div>
+          <div className="control">
+            <button className="button is-primary" type="submit">
+              Add
+            </button>
+          </div>
+        </div>
       </form>
       <ul>
         {activities.map(a => (
-          <li key={a}>
-            {a} <button onClick={() => del(a)}>X</button>
+          <li
+            className="box is-flex"
+            style={{ justifyContent: 'space-between' }}
+            key={a}
+          >
+            <p>{a}</p>{' '}
+            <button className="button is-danger" onClick={() => del(a)}>
+              X
+            </button>
           </li>
         ))}
       </ul>
