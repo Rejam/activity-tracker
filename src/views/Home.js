@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Table, TableHead, TableBody, TableLink } from '../components/Table'
+import { Table, TableHead, TableBody, TableLink } from '../components'
 
 export default ({ targets, progress }) => (
   <div>

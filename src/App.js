@@ -6,7 +6,7 @@ import 'bulma'
 import { Home, Targets, Activities, Activity, Report, LogActivity } from './views'
 
 // import components
-import Header from './components/Header'
+import {Header, ActivityForm} from './components'
 
 const App = ({ data }) => {
   const [activities, setActivities] = useState(data.activities)
@@ -15,18 +15,18 @@ const App = ({ data }) => {
 
   const addActivity = newActivity => setActivities([newActivity, ...activities])
 
-  const delActivity = activity =>
+  const delActivity = (activity) =>
     setActivities(activities.filter(a => a !== activity))
 
   const addLog = newLog => setLogs([...logs, newLog])
 
-  const filterTargets = activity =>
-    targets.filter(target => target.activity !== activity)
+  const addTarget = target =>
+    setTargets([
+      target, 
+      ...targets.filter(t => t.activity !== target.activity)
+    ])
 
-  const addTarget = newTarget =>
-    setTargets([filterTargets(newTarget.activity), newTarget])
-
-  const delTarget = ({ activity }) => setTargets(filterTargets(activity))
+  const delTarget = id => setTargets(targets.filter(t => t.id !== id))
 
   const progress = logs.reduce(
     (acc, { activity, amount }) =>
@@ -87,7 +87,14 @@ const App = ({ data }) => {
               render={props => {
                 const { activity } = props.match.params
                 return (
-                  <LogActivity {...props} addLog={addLog} activity={activity} />
+                  <LogActivity {...props}>
+                    <ActivityForm
+                      {...props}
+                      log={addLog}
+                      activity={activity}
+                      logDate={new Date()}
+                      />
+                  </LogActivity>
                 )
               }}
             />

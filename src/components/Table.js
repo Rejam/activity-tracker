@@ -18,7 +18,7 @@ export const TableHead = ({ children }) => (
 export const TableBody = ({ children }) => <tbody>{children}</tbody>
 
 export const TableButton = ({ children, color, onClick }) => (
-  <td className="is-pulled-right">
+  <td style={{textAlign: 'right', width: '50px'}}>
     <button className={`button is-${color} is-outlined`} onClick={onClick}>
       {children}
     </button>
@@ -26,7 +26,7 @@ export const TableButton = ({ children, color, onClick }) => (
 )
 
 export const TableLink = ({ children, color, to }) => (
-  <td className="is-pulled-right">
+  <td  style={{textAlign: 'right', width: '50px'}}>
     <Link className={`button is-${color} is-outlined`} to={to}>
       {children}
     </Link>
