@@ -6,17 +6,18 @@ const style = {
     display: 'flex',
     borderTop: '1px solid #333',
     borderBottom: '1px solid #333',
-    justifyContent: 'space-between'
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   link: {
     padding: '0.5em 1em',
     fontVariant: 'small-caps',
     fontWeight: '600',
-    color: '#333'
+    color: '#333',
   },
   active: {
     color: '#39f'
-  }
+  },
 }
 
 const Link = ({ to, children }) => {
@@ -27,7 +28,7 @@ const Link = ({ to, children }) => {
   )
 }
 export default () => (
-  <nav style={style.nav}>
+  <nav className="navbar" style={style.nav}>
     <Link to="/">Home</Link>
     <Link to="/targets">Targets</Link>
     <Link to="/activities">Activities</Link>

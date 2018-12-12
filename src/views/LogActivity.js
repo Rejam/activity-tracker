@@ -1,6 +1,8 @@
 import React from 'react'
 
 import ViewHeading from '../components/ViewHeading'
+import { Link } from 'react-router-dom'
+
 
 export default ({ addLog, activity, history }) => {
   const submitLog = e => {
@@ -26,10 +28,7 @@ export default ({ addLog, activity, history }) => {
   return (
     <div>
       <ViewHeading>Log Activity</ViewHeading>
-      <form
-        onSubmit={submitLog}
-        style={{ maxWidth: '400px', padding: '2em', margin: 'auto' }}
-      >
+      <form onSubmit={submitLog} >
         <div className="field">
           <label className="label" htmlFor="activity">
             Activity
@@ -89,9 +88,12 @@ export default ({ addLog, activity, history }) => {
             />
           </div>
         </div>
-        <button className="button" color="primary" type="submit">
-          Add Log
-        </button>
+        <div className="is-flex" style={{ justifyContent: "space-between" }}>
+          <button className="button is-primary" type="submit">
+            Add Log
+          </button>
+          <Link className="button is-danger is-outlined" to="/">Back</Link>
+        </div>
       </form>
     </div>
   )

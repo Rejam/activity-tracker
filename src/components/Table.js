@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const Table = ({ children }) => (
   <div className="box">
-    <table className="table is-fullwidth is-striped is-hoverable">
+    <table className="table is-fullwidth is-striped is-hoverable table">
       {children}
     </table>
   </div>
