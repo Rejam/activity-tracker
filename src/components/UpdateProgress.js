@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 
 export default ({ targets, addLog }) => {
   const submit = e => {
-    e.preventDefault();
-    const { value: activity } = e.target.elements.activity;
-    const { value } = e.target.elements.amount;
-    const newLog = { activity, amount: parseInt(value) };
-    addLog(newLog);
-  };
+    e.preventDefault()
+    const { value: activity } = e.target.elements.activity
+    const { value } = e.target.elements.amount
+    const newLog = { activity, amount: parseInt(value) }
+    addLog(newLog)
+  }
   return (
-    <div>
+    <>
       <h2>Update Progress</h2>
       <form onSubmit={submit}>
         <select name="activity" id="activity" required>
@@ -27,6 +27,6 @@ export default ({ targets, addLog }) => {
         />
         <button type="submit">Update</button>
       </form>
-    </div>
-  );
-};
+    </>
+  )
+}

@@ -5,7 +5,7 @@ import ViewHeading from '../components/ViewHeading'
 
 export default ({ activity, log }) => {
   return (
-    <div>
+    <>
       <ViewHeading>{activity}</ViewHeading>
       <Link className="button is-primary" to={`/log/${activity}`}>
         Add
@@ -36,6 +36,6 @@ export default ({ activity, log }) => {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </>
   )
 }

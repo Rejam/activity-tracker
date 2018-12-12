@@ -3,7 +3,6 @@ import React from 'react'
 import ViewHeading from '../components/ViewHeading'
 import { Link } from 'react-router-dom'
 
-
 export default ({ addLog, activity, history }) => {
   const submitLog = e => {
     e.preventDefault()
@@ -15,9 +14,11 @@ export default ({ addLog, activity, history }) => {
     })
     history.goBack()
   }
+
   function pad(num) {
     return `${num < 10 ? '0' : ''}${num}`
   }
+
   const now = new Date(),
     year = now.getFullYear(),
     month = pad(now.getMonth() + 1),
@@ -26,9 +27,9 @@ export default ({ addLog, activity, history }) => {
     mins = pad(now.getMinutes())
 
   return (
-    <div>
+    <>
       <ViewHeading>Log Activity</ViewHeading>
-      <form onSubmit={submitLog} >
+      <form onSubmit={submitLog}>
         <div className="field">
           <label className="label" htmlFor="activity">
             Activity
@@ -88,13 +89,15 @@ export default ({ addLog, activity, history }) => {
             />
           </div>
         </div>
-        <div className="is-flex" style={{ justifyContent: "space-between" }}>
+        <div className="is-flex" style={{ justifyContent: 'space-between' }}>
           <button className="button is-primary" type="submit">
             Add Log
           </button>
-          <Link className="button is-danger is-outlined" to="/">Back</Link>
+          <Link className="button is-danger is-outlined" to="/">
+            Back
+          </Link>
         </div>
       </form>
-    </div>
+    </>
   )
 }

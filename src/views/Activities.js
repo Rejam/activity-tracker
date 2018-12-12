@@ -10,12 +10,10 @@ const AddActivity = ({ activities, addActivity, delActivity }) => {
     e.target.reset()
   }
 
-  const del = activity => {
-    delActivity(activity)
-  }
+  const del = activity => delActivity(activity)
 
   return (
-    <div>
+    <>
       <ViewHeading>Add New Activity</ViewHeading>
       <form onSubmit={handleSubmit}>
         <div className="field is-grouped">
@@ -53,7 +51,7 @@ const AddActivity = ({ activities, addActivity, delActivity }) => {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </>
   )
 }
 

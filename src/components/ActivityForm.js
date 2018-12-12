@@ -25,7 +25,7 @@ export default ({ logDate, log, activity, history }) => {
     mins = pad(logDate.getMinutes())
 
   return (
-    <div>
+    <>
       <form
         onSubmit={submitLog}
         style={{
@@ -97,6 +97,6 @@ export default ({ logDate, log, activity, history }) => {
           Submit
         </button>
       </form>
-    </div>
+    </>
   )
 }
