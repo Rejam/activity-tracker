@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Table, TableHead, TableBody, TableButton } from '../components/Table'
-import ViewHeading from '../components/ViewHeading'
+import { ViewHeading, Table, TableHead, TableBody, TableButton } from '../components'
 
 const AddActivity = ({ activities, addActivity, delActivity }) => {
+
   const handleSubmit = e => {
     e.preventDefault()
     addActivity(e.target.elements.activity.value)
@@ -36,6 +36,7 @@ const AddActivity = ({ activities, addActivity, delActivity }) => {
           </div>
         </div>
       </form>
+      <br/>
       <Table>
         <TableHead>
           <th>Activity</th>
